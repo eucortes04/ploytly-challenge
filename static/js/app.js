@@ -11,11 +11,6 @@ function init(){
 
         //Add sample id's as dropdown selector options
         //loop through the IDs in ID array
-
-        //***TEST FOR EACH */
-        // sampleIDs.forEach(element => {
-        //     console.log(element);
-        // });
         sampleIDs.forEach(function (element) {
             //add a selector option to selector html filling in tags with array element containing sample ID
             dropdownSelector.append("option").text(element).property("value", element);
