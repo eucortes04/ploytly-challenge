@@ -18,11 +18,11 @@ function init(){
     //Build Graphs on the first execution using the first element
     buildBar(940);
     buildBubble(940);
+    sampleMetadata(940);
 };
 
 //Function to build Bar chart
 function buildBar(BarSampleID){
-    console.log(BarSampleID)
     //Pull passed sample ID's data from json
     d3.json("../samples.json").then(function (data){
         //create variable to hold all sample data for filtering
@@ -71,7 +71,6 @@ function buildBar(BarSampleID){
 
 //Function to build Bubble chart
 function buildBubble(bubbleSampleID){
-    console.log(bubbleSampleID)
     //Pull passed sample ID's data from json
     d3.json("../samples.json").then(function (data){
         //create variable to hold all sample data for filtering
@@ -123,6 +122,8 @@ function buildBubble(bubbleSampleID){
 function sampleMetadata(selectedSample){
     //create variable to tie to demographic info in html
     var demographicInfo = d3.select("#sample-metadata");
+    //clear out previous sample metaData to not keep adding on
+    demographicInfo.html("");
 
     //Pull passed sample ID's data from json
     d3.json("../samples.json").then(function(data){
@@ -134,12 +135,12 @@ function sampleMetadata(selectedSample){
         });
         //convert returned array
         var metaData = filteredData[0];
-
-        // metaData.forEach(function(element){
-        //     // demographicInfo.append("p").text(`${key}: ${value}`);
-        // });
-
-
+        
+        //iternate through metaData dictionary
+        for(const [key,value] of Object.entries(metaData)){
+            //add paragraph to demographic info for each key value pair
+            demographicInfo.append("p").text(`${key}: ${value}`);
+        }
     });
 }
 
