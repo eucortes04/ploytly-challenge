@@ -4,7 +4,7 @@ function init(){
     var dropdownSelector = d3.select("#selDataset");
 
     //Give selector sample ID's
-    d3.json("samples.json").then(function (data) {
+    d3.json("data/samples.json").then(function (data) {
         //create an array of all the sample ID's
         var sampleIDs = data.names;
 
@@ -24,7 +24,7 @@ function init(){
 //Function to build Bar chart
 function buildBar(BarSampleID){
     //Pull passed sample ID's data from json
-    d3.json("samples.json").then(function (data){
+    d3.json("data/samples.json").then(function (data){
         //create variable to hold all sample data for filtering
         var allSampleData = data.samples;
         // filter using sample ID passed into build function returns array
@@ -72,7 +72,7 @@ function buildBar(BarSampleID){
 //Function to build Bubble chart
 function buildBubble(bubbleSampleID){
     //Pull passed sample ID's data from json
-    d3.json("samples.json").then(function (data){
+    d3.json("data/samples.json").then(function (data){
         //create variable to hold all sample data for filtering
         var allSampleData = data.samples;
         // filter using sample ID passed into build function returns array
@@ -126,7 +126,7 @@ function sampleMetadata(selectedSample){
     demographicInfo.html("");
 
     //Pull passed sample ID's data from json
-    d3.json("samples.json").then(function(data){
+    d3.json("data/samples.json").then(function(data){
         //create an array of all sample metadata
         var allSampleMeta = data.metadata;
         //filter using sampleID passed into build function, returns array
